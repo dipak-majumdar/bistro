@@ -139,15 +139,7 @@
   animation: checkmark-circle 0.6s ease-in-out backwards;
 }
 
-#register_bg {
-  background: #ccc url(../img/access_bg.jpg) center center no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 100vh;
-  width: 100%;
-}
+
 
 #register {
   -webkit-box-shadow: 3px 0 30px rgba(0, 0, 0, 0.2);
@@ -155,12 +147,13 @@
   box-shadow: 3px 0 30px rgba(0, 0, 0, 0.2);
   width: 430px;
   padding: 30px 45px;
-  position: absolute;
+  /* position: absolute;
   left: 0;
-  top: 0;
+  top: 0; */
   overflow-y: auto;
   background-color: #fff;
-  min-height: 100vh;
+  min-height: 50vh;
+  border-radius: 10px;
 }
 #register figure {
   margin: 0;
@@ -177,6 +170,7 @@
 @media (max-width: 767px) {
   #register {
     width: 100%;
+    min-height: 100vh;
     padding: 30px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
