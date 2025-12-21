@@ -12,48 +12,6 @@
     <!-- SPECIFIC CSS -->
 	<link href="{{ asset('assets/web/css/order-sign_up.css') }}" rel="stylesheet">
 
-    <!-- YOUR CUSTOM CSS -->
-    <link href="{{ asset('assets/web/css/custom.css') }}" rel="stylesheet">
-    
-	<style>
-			#register_bg {
-			position: relative;
-			min-height: 100vh;
-			width: 100%;
-			overflow: hidden;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			}
-			
-			#register_bg::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: rgba(0, 0, 0, 0.4);
-			z-index: 1;
-			}
-			
-			.video-bg {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			min-width: 100%;
-			min-height: 100%;
-			width: auto;
-			height: auto;
-			z-index: 0;
-			}
-			
-			#register {
-			z-index: 2;
-			}
-		</style>
-
 </head>
 
 <body id="register_bg">

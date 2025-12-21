@@ -35,6 +35,7 @@ Route::get('/order-placed', function () {
 
 
 
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 

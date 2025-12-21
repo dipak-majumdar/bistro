@@ -22,45 +22,6 @@
 	<x-web.header-link />
 	    <!-- SPECIFIC CSS -->
 		<link href="{{ asset('assets/web/css/order-sign_up.css') }}" rel="stylesheet">
-
-		<style>
-			#register_bg {
-			position: relative;
-			min-height: 100vh;
-			width: 100%;
-			overflow: hidden;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			}
-			
-			#register_bg::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: rgba(0, 0, 0, 0.4);
-			z-index: 1;
-			}
-			
-			.video-bg {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			min-width: 100%;
-			min-height: 100%;
-			width: auto;
-			height: auto;
-			z-index: 0;
-			}
-			
-			#register {
-			z-index: 2;
-			}
-		</style>
 </head>
 
 <body id="register_bg">
@@ -69,10 +30,10 @@
 		<source src="{{ asset('assets/web/video/login-bg.mp4') }}" type="video/mp4">
 	</video>
 	
-	<div id="register">
+	<div id="login_container">
 		<aside>
 			<figure>
-				<a href="{{ route('register') }}"><img src="{{ asset('assets/site/logo.png') }}" width="140" height="auto" alt=""></a>
+				<a href="{{ route('home') }}"><img src="{{ asset('assets/site/logo.png') }}" width="140" height="auto" alt=""></a>
 			</figure>
 			<div class="access_social">
 					<a href="#0" class="social_bt facebook">Login with Facebook</a>

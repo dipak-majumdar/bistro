@@ -193,33 +193,6 @@
 
         (async () => {
             try {
-                // Ensure guest id exists before request (use cookie instead of localStorage)
-                const getCookie = (name) => {
-                    const match = document.cookie.split('; ').find(row => row.startsWith(name + '='));
-                    return match ? decodeURIComponent(match.split('=')[1]) : null;
-                };
-                const setCookie = (name, value, days) => {
-                    const d = new Date();
-                    d.setTime(d.getTime() + (days*24*60*60*1000));
-                    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${d.toUTCString()}; path=/; SameSite=Lax`;
-                };
-                let guestId = getCookie('guest_identifier');
-                if (!guestId) {
-                    guestId = (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2));
-                    setCookie('guest_identifier', guestId, 30);
-                }
-
-                // const isLoggedIn = {{ Auth::check() ? Auth::check() : false }};
-                let headers = {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                };
-
-                if (isLoggedIn) {
-                    headers['X-User-Id'] = '{{ Auth::id() }}';
-                } else {
-                    headers['X-Guest-Id'] = guestId;
-                }
 
                 const res = await fetch('/api/cart/items', {
                     method: 'POST',

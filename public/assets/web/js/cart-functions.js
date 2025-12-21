@@ -1,19 +1,66 @@
-// Helper: read cookie by name
-function getCookie(name) {
-    const match = document.cookie.split('; ').find(row => row.startsWith(name + '='));
-    return match ? decodeURIComponent(match.split('=')[1]) : null;
-}
-
 let headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
 };
 
-if (isLoggedIn) {
-    headers['X-User-Id'] = userId;
-} else {
-    headers['X-Guest-Id'] = getCookie('guest_identifier');
+const isLoggedIn = async () => {
+    try {
+        const response = await fetch('/is-logged-in', {
+            headers: headers,
+        });
+        const data = await response.json();
+        return data.is_logged_in;
+    } catch (error) {
+        console.error('Failed to fetch is logged in:', error);
+        return false;
+    }
 }
+
+const getUserId = async () => {
+    try {
+        const response = await fetch('/user-id', {
+            headers: headers,
+        });
+        const data = await response.json();
+        return data.user_id;
+    } catch (error) {
+        console.error('Failed to fetch user ID:', error);
+        return null;
+    }
+}
+
+
+const getCSRFToken = () => {
+    const tokenElement = document.querySelector('meta[name="csrf-token"]');
+    if (tokenElement) {
+        return tokenElement.getAttribute('content');
+    }
+
+    // Fallback: try to get from form
+    const formToken = document.querySelector('input[name="_token"]');
+    if (formToken) {
+        return formToken.value;
+    }
+
+    // Last fallback: return empty string
+    console.warn('CSRF token not found');
+    return '';
+}
+
+// set user-id in header
+const setUserHeaders = async () => {
+    const loggedIn = await isLoggedIn();
+    const userId = await getUserId();
+
+    headers['X-CSRF-TOKEN'] = getCSRFToken();
+
+    if (loggedIn) {
+        headers['X-User-Id'] = userId;
+    } else {
+        headers['X-Guest-Id'] = userId;
+    }
+};
+
 
 async function fetchCartAndRender() {
     try {
@@ -24,7 +71,6 @@ async function fetchCartAndRender() {
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || 'Failed to fetch cart');
 
-        console.log(data);
         // render cart
         document.querySelector('.cart_bt strong').textContent = data.count;
         const listEl = document.querySelector('.dropdown-menu ul');
@@ -33,10 +79,10 @@ async function fetchCartAndRender() {
         const currency = data.currency;
         data.items.forEach(item => {
             const firstImage = (item.menu_item?.image_path) || 'storage/placeholder/placeholder.jpg';
-            const productImage = window.location.origin+'/'+firstImage;
-            const name = item.menu_item?.name || 'Item';
-            const quantity = item.quantity || 1;
-            const price = (item.variations?. [0]?.price) ?? 0;
+            const productImage = window.location.origin + '/' + firstImage;
+            const name = item.menu_item?.name;
+            const quantity = item.quantity;
+            const price = (item.variations?. [0]?.price);
             cartTotal += price * quantity;
 
             if (listEl) listEl.innerHTML += `
@@ -52,7 +98,6 @@ async function fetchCartAndRender() {
     }
 }
 
-fetchCartAndRender();
 
 document.addEventListener('click', async (e) => {
     const a = e.target.closest('a.action[data-cart-id]');
@@ -60,7 +105,6 @@ document.addEventListener('click', async (e) => {
     e.preventDefault();
     try {
         const id = a.getAttribute('data-cart-id');
-        const guestId = getCookie('guest_identifier');
         const res = await fetch(`/api/cart/items/${id}`, {
             method: 'DELETE',
             headers: headers,
@@ -79,3 +123,12 @@ document.addEventListener('click', async (e) => {
         });
     }
 });
+
+// Initialize headers and then fetch cart
+const initializeAndFetchCart = async () => {
+    await setUserHeaders();
+    fetchCartAndRender();
+};
+
+// Initialize and fetch cart immediately
+initializeAndFetchCart();

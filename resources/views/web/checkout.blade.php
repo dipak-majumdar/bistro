@@ -221,37 +221,12 @@
 
 
 <script>
-	headers['X-CSRF-TOKEN'] = getCSRFToken();
-    
-	if (isLoggedIn) {
-        headers['X-User-Id'] = '{{ Auth::id() }}';
-    } else {
-        headers['X-Guest-Id'] = getCookie('guest_identifier');
-    }
 
 	$('#sidebar_fixed').theiaStickySidebar({
 		minWidth: 991,
 		updateSidebarHeight: false,
 		additionalMarginTop: 30
 	});
-
-	// Get CSRF token safely
-	function getCSRFToken() {
-		const tokenElement = document.querySelector('meta[name="csrf-token"]');
-		if (tokenElement) {
-			return tokenElement.getAttribute('content');
-		}
-		
-		// Fallback: try to get from form
-		const formToken = document.querySelector('input[name="_token"]');
-		if (formToken) {
-			return formToken.value;
-		}
-		
-		// Last fallback: return empty string
-		console.warn('CSRF token not found');
-		return '';
-	}
 
 	// Handle payment method selection
 	$('input[name="payment_method"]').change(function() {
@@ -480,13 +455,6 @@
 		$('#success-alert').show();
 		$('#error-alert').hide();
 		$('html, body').animate({scrollTop: 0}, 500);
-	}
-
-	function getCookie(name) {
-		const value = `; ${document.cookie}`;
-		const parts = value.split(`; ${name}=`);
-		if (parts.length === 2) return parts.pop().split(';').shift();
-		return null;
 	}
 
 	// Initialize payment method visibility

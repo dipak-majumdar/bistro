@@ -7,27 +7,16 @@
 
 @section('main')
     <div class="container margin_60_20 mt-6">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center bg-info rounded border" style="--bs-bg-opacity: .2;">
             <div class="col-lg-8">
                 <div class="main text-center">
                     @if (request('order'))
-                        <div class="success-icon mb-2">
+                        <div class="success-icon mb-2 mt-4">
                             <i class="bi bi-check-circle text-success" style="font-size: 4rem;"></i>
                         </div>
-                        <h3 class="text-success mb-3">Order Placed Successfully!</h3>
+                        <h3 class="text-success mb-3">Order Placed!</h3>
 
-                        @if (request('payment') === 'cod')
-                            <div class="alert alert-info mb-4">
-                                <i class="fas fa-money-bill-wave me-2"></i>
-                                <strong>Cash on Delivery</strong><br>
-                                You will pay cash when your order is delivered.
-                            </div>
-                        @else
-                            <p class="mb-4">Thank you for your order. We have received your order and will process it
-                                shortly.</p>
-                        @endif
-
-                        <div class="bg-light p-4 rounded mb-4">
+                        <div class="mb-4">
                             <p class="mb-2"><strong>Order ID:</strong> {{ request('order') }}</p>
                             <p class="mb-2"><strong>Order Date:</strong> {{ now()->format('M d, Y H:i') }}</p>
                             <p class="mb-2"><strong>Payment Method:</strong>
