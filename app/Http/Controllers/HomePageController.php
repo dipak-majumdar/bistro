@@ -24,10 +24,10 @@ class HomePageController extends Controller
         try {
             $menuItems = $this->menuItemService->index();
             $categories = $this->menuCategoryService->index();
-            $mostOrderedItems = $this->menuItemService->mostOrderedItems();
+            $mostOrderedItems = $this->menuItemService->mostOrderedItems(6);
             $categoryWithItems = MenuCategory::with(['items' => function($query) {
                 $query->with('images')->orderBy('id', 'desc')->limit(4);
-            }])->get();
+            }])->whereHas('items')->get();
             
             return view('web.home', [
                 'items' => $menuItems['menuItems'],
