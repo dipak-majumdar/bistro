@@ -24,7 +24,19 @@ class CartController extends Controller
             ]);
         }
 
-        $items = $cart->items()->with(['menuItem.images', 'variations'])->latest()->get();
+        // $items = $cart->items()->with(['menuItem.images', 'variations'])->latest()->get();
+
+        $items = $cart->items()->with(['menuItem' => function($query) {
+            $query->addSelect(['image_path' => function($subquery) {
+                $subquery->selectRaw("CONCAT('storage/', image_path) as image_path")
+                    ->from('product_images')
+                    ->whereColumn('product_images.item_id', 'menu_items.id')
+                    ->orderBy('product_images.id')
+                    ->limit(1);
+            }]);
+        }, 'variations'])->latest()->get();
+
+        
 
         return response()->json([
             'cart_id' => $cart->id,
@@ -32,6 +44,7 @@ class CartController extends Controller
             'count' => $items->count(),
             // You can compute monetary total here if you have prices on relations
             'total' => 0,
+            'currency' => config('app.currency'),
         ])->withHeaders($this->cartHeaders($cart));
     }
 

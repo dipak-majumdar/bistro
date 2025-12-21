@@ -79,6 +79,7 @@
 
 <!-- COMMON SCRIPTS -->
 <x-web.footer-js-links />
+<script src="{{ asset('assets/web/js/cart-functions.js') }}"></script>
 
 <!-- Global Toast Component -->
 <x-web.component.toast />
