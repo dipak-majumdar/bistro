@@ -22,7 +22,7 @@ class AuthenticatedSessionController extends Controller
         if (Auth::check()) {
             return redirect()->intended(route('home', absolute: false));
         }
-        return view('web.login');
+        return view('web.user-auth.login');
     }
 
     /**

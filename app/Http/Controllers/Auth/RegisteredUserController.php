@@ -23,7 +23,7 @@ class RegisteredUserController extends Controller
         if (Auth::check()) {
             return redirect()->intended(route('home', absolute: false));
         }
-        return view('web.register');
+        return view('web.user-auth.register');
     }
 
     /**
