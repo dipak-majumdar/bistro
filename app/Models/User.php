@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the address books for the user.
+     */
+    public function addressBooks()
+    {
+        return $this->hasMany(AddressBook::class);
+    }
 }

@@ -9,8 +9,8 @@ window.showToast('Heads up!', { variant: 'warning', delay: 5000 }); --}}
     #liveToastContainer {
         z-index: 2147483647 !important; /* above Magnific Popup */
         position: fixed;
-        top: 0;
-        right: 0;
+        /* top: 0; */
+        /* right: 0; */
         pointer-events: none; /* container ignores clicks */
     }
     #liveToastContainer .toast {
@@ -30,7 +30,7 @@ window.showToast('Heads up!', { variant: 'warning', delay: 5000 }); --}}
     }
 </style>
 
-<div id="liveToastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>
+<div id="liveToastContainer" class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3"></div>
 
 <script>
 // Global Toast helper
@@ -44,7 +44,7 @@ window.showToast = function(message, options = {}) {
     if (!container) {
         container = document.createElement('div');
         container.id = containerId;
-        container.className = 'toast-container position-fixed top-0 end-0 p-3';
+        container.className = 'toast-container position-fixed bottom-0 start-50 translate-middle-x p-3';
         document.body.appendChild(container);
     } else {
         document.body.appendChild(container);

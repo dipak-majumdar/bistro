@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- BASE CSS -->
-{{-- @vite('resources/css/web.css') --}}
+@vite('resources/css/web.css')
 <link href="{{ asset('assets/web/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/web/css/style.css') }}" rel="stylesheet">
 

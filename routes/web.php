@@ -8,6 +8,7 @@ use App\Http\Controllers\CheckoutPageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserPortal\Dashboard;
 use App\Http\Controllers\UserPortal\PasswordController;
+use App\Http\Controllers\UserPortal\AddressController;
 
 Route::get('/', [HomePageController::class, 'homePage'])->name('home');
 Route::get('/about', [HomePageController::class, 'aboutPage'])->name('about');
@@ -57,6 +58,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/profile/avatar/update', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
     Route::post('/profile/two-factor/update', [ProfileController::class, 'updateTwoFactor'])->name('profile.two-factor.update');
     // route("profile.two-factor.update")
+
+    Route::get('/address-book', [AddressController::class, 'index'])->name('profile.address-book');
+    Route::get('/address-book/create', [AddressController::class, 'create'])->name('profile.address-book.create');
+    Route::post('/address-book/store', [AddressController::class, 'store'])->name('profile.address-book.store');
+    Route::get('/address-book/edit/{id}', [AddressController::class, 'edit'])->name('profile.address-book.edit');
+    Route::put('/address-book/update/{id}', [AddressController::class, 'update'])->name('profile.address-book.update');
+    Route::delete('/address-book/delete/{id}', [AddressController::class, 'destroy'])->name('profile.address-book.destroy');
+
 });
 
 // Route::apiResource('home', App\Http\Controllers\API\HomeController::class);

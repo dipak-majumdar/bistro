@@ -133,7 +133,7 @@
                                         class="list-group-item list-group-item-action border-0 px-0">
                                         <i class="fas fa-lock me-2 text-primary"></i> Change Password
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action border-0 px-0">
+                                    <a href="{{ route('profile.address-book') }}" class="list-group-item list-group-item-action border-0 px-0">
                                         <i class="fas fa-map-marker-alt me-2 text-primary"></i> Saved Addresses
                                     </a>
                                     <a href="#" class="list-group-item list-group-item-action border-0 px-0"
@@ -183,6 +183,8 @@
             </div>
         </div>
     </div>
+<!-- Global Toast Component -->
+<x-web.component.toast />
 
     <!-- COMMON SCRIPTS -->
     <x-web.footer-js-links />
