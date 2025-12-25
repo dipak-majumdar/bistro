@@ -8,7 +8,9 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class ProfileController extends Controller
@@ -29,17 +31,85 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $user = Auth::user();
-        $user->fill($request->validated());
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-            $user->sendEmailVerificationNotification();
+        
+        try {
+            // Get validated data
+            $validated = $request->validated();
+            
+            $user = $request->user();
+            
+            
+            // Update user data
+            $user->name = $validated['name'];
+            
+            
+            // Save the user
+            $user->save();
+            
+            return redirect()->route('profile.edit')
+                ->with('success', 'Profile updated successfully!');
+                
+        } catch (\Exception $e) {
+            Log::error('Profile update error: ' . $e->getMessage(), [
+                'exception' => get_class($e),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Failed to update profile. Please try again. ' . $e->getMessage());
         }
+    }
 
-        $user->save();
+    /**
+     * Update the user's profile information.
+     */
+    public function emailUpdate(Request $request): RedirectResponse
+    {
 
-        return back()->with('status', 'profile-updated');
+        try {
+            // Get validated data
+            $validated = $request->validated();
+            
+            $user = Auth::user();
+            $userOldEmail = Auth::user()->email;
+            
+            // Check if email is being updated
+            $emailChanged = $userOldEmail !== $validated['email'];
+            
+            
+            if ($emailChanged) {
+                $user->email_verified_at = null;
+            }
+            
+            // Save the user
+            $user->save();
+
+            // Send verification email if email was changed
+            if ($emailChanged) {
+                $user->sendEmailVerificationNotification();
+                return redirect()->route('profile.edit')
+                    ->with('status', 'verification-link-sent')
+                    ->with('success', 'Email updated! Please verify your new email address.');
+            }
+            
+            return redirect()->route('profile.edit')
+                ->with('success', 'Email updated successfully!');
+                
+        } catch (\Exception $e) {
+            Log::error('Profile update error: ' . $e->getMessage(), [
+                'exception' => get_class($e),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Failed to update email. Please try again. ' . $e->getMessage());
+        }
     }
 
     public function privacy(): View

@@ -49,31 +49,14 @@
                 @endif
             </div>
 
-            <div class="d-flex align-items-center gap-3">
-                <button type="submit" class="btn btn-primary">
+            <div class="d-flex align-items-center gap-3 text-end">
+                <button type="submit" class="btn btn-primary ms-auto">
                     {{ __('Save') }}
                 </button>
-
-                @if (session('status') === 'profile-updated')
-                    <div class="text-success" id="save-message">
-                        {{ __('Saved.') }}
-                    </div>
-                @endif
             </div>
         </form>
     </div>
 </div>
 
 @push('scripts')
-<script>
-    // Auto-hide success message after 2 seconds
-    document.addEventListener('DOMContentLoaded', function() {
-        const saveMessage = document.getElementById('save-message');
-        if (saveMessage) {
-            setTimeout(() => {
-                saveMessage.style.display = 'none';
-            }, 2000);
-        }
-    });
-</script>
 @endpush

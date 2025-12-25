@@ -194,6 +194,20 @@
 
     <!-- Autocomplete -->
     <script>
+        @if (session('success'))
+            window.showToast('{{ session('success') }}', {
+                variant: 'success',
+                delay: 4000
+            });
+        @endif
+
+        @if (session('error'))
+            window.showToast('{{ session('error') }}', {
+                variant: 'danger',
+                delay: 4000
+            });
+        @endif
+        
         // Order filtering and search functionality
         document.addEventListener('DOMContentLoaded', function() {
 
