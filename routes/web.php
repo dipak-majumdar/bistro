@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserPortal\ProfileController;
+use App\Http\Controllers\UserPortal\LoginActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\CategoryPageController;
@@ -65,6 +66,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/address-book/edit/{id}', [AddressController::class, 'edit'])->name('profile.address-book.edit');
     Route::put('/address-book/update/{id}', [AddressController::class, 'update'])->name('profile.address-book.update');
     Route::delete('/address-book/delete/{id}', [AddressController::class, 'destroy'])->name('profile.address-book.destroy');
+
+    Route::get('/login-activities', [LoginActivityController::class, 'index'])->name('login-activities.index');
+    Route::get('/login-activities/{loginActivity}', [LoginActivityController::class, 'show'])->name('login-activities.show');
 
 });
 

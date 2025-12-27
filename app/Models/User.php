@@ -54,4 +54,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(AddressBook::class);
     }
+
+    /**
+     * Get the login activities for the user.
+     */
+    public function loginActivities()
+    {
+        return $this->hasMany(UserLoginActivity::class);
+    }
 }

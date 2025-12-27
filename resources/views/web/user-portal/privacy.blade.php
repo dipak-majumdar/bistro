@@ -41,8 +41,7 @@
                             {{ Auth::user()->last_login_at ? Auth::user()->last_login_at->diffForHumans() : 'Never' }}
                         </p>
                     </div>
-                    <a href="#" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#accountActivityModal">
+                    <a href="{{ route('login-activities.index') }}" class="btn btn-outline-secondary btn-sm">
                         View Activity
                     </a>
                 </div>
