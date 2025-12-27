@@ -113,10 +113,6 @@ class ProfileController extends Controller
         }
     }
 
-    public function privacy(): View
-    {
-        return view('web.user-portal.privacy');
-    }
 
     /**
      * Delete the user's account.

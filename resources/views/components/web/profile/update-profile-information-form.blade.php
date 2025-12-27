@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card rounded shadow-sm mb-4">
     <div class="card-body">
         <h2 class="h5 mb-4">{{ __('Profile Information') }}</h2>
 

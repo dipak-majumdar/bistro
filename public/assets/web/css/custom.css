@@ -24,3 +24,16 @@
     background-color: darken(var(--main-color), 10%) !important;
     border-color: darken(var(--main-color), 10%) !important;
 }
+
+.hover-main:hover{
+    background-color: var(--main-color) !important;
+    border-color: var(--main-color) !important;   
+}
+
+.bi-headset::before, .bi-power::before{
+    font-size: 1.1rem !important;;
+    vertical-align: -0.2em !important;
+}
+.bi-power::before{
+    font-weight: 600 !important;
+}

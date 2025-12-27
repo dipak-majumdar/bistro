@@ -47,10 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/support', [Dashboard::class, 'support'])->name('support');
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
-    Route::get('/privacy', [ProfileController::class, 'privacy'])->name('user.privacy');
     Route::get('/passwords', [PasswordController::class, 'index'])->name('user.password');
-
-
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -1,8 +1,8 @@
 @extends('layouts.web.user-portal.main-layout')
 
 @section('main')
-    <div class="container px-3 px-md-4 d-flex align-items-center justify-content-center min-vh-100">
-        <section aria-labelledby="welcome-heading" class="my-5">
+    <div class="container px-3 px-md-4 d-flex align-items-center justify-content-center h-100">
+        <section aria-labelledby="welcome-heading">
             <div class="card mx-auto" style="max-width: 900px;">
                 <div class="card-body text-center p-4 p-sm-5">
                     <h1 id="welcome-heading" class="display-6 fw-bold text-dark mb-2">

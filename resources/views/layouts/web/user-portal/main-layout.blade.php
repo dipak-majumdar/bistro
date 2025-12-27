@@ -108,9 +108,16 @@
                             </div>
                         </a>
 
-                        <a href="{{ route('support') }}" class="card border-0 shadow-sm mb-4">
+                        <a href="{{ route('profile.address-book') }}" class="card border-0 shadow-sm mb-2">
                             <div class="card-body d-flex justify-content-between">
-                                <h6 class="mb-0">Support</h6>
+                                <h6 class="mb-0">Addresses Book</h6>
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+                        </a>
+
+                        <a href="{{ route('user.password') }}" class="card border-0 shadow-sm mb-2">
+                            <div class="card-body d-flex justify-content-between">
+                                <h6 class="mb-0">Change Password</h6>
                                 <i class="bi bi-arrow-right"></i>
                             </div>
                         </a>
@@ -119,25 +126,22 @@
                             <div class="card-body">
                                 <h6 class="mb-3">Quick Actions</h6>
                                 <div class="list-group list-group-flush">
-                                    <a href="{{ route('user.password') }}"
-                                        class="list-group-item list-group-item-action border-0 px-0">
-                                        <i class="fas fa-lock me-2 text-primary"></i> Change Password
+                                    
+                                    <a href="{{ route('support') }}" class="list-group-item list-group-item-action border-0 px-2">
+                                        <i class="bi bi-headset me-2"></i> Support
                                     </a>
-                                    <a href="{{ route('profile.address-book') }}" class="list-group-item list-group-item-action border-0 px-0">
-                                        <i class="fas fa-map-marker-alt me-2 text-primary"></i> Saved Addresses
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action border-0 px-0"
-                                        data-bs-toggle="modal" data-bs-target="#notificationSettingsModal">
-                                        <i class="fas fa-bell me-2 text-primary"></i> Notification Settings
-                                    </a>
-                                    <a href="{{ route('user.privacy') }}"
-                                        class="list-group-item list-group-item-action border-0 px-0">
-                                        <i class="fas fa-shield-alt me-2 text-primary"></i> Privacy & Security
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action border-0 px-0"
-                                        data-bs-toggle="modal" data-bs-target="#referFriendModal">
-                                        <i class="fas fa-shield-alt me-2 text-primary"></i> Share App
-                                    </a>
+                                    <button type="button" class="list-group-item list-group-item-action border-0 px-2"
+                                        onclick="shareApp(event)">
+                                        <i class="bi bi-share-fill me-2"></i> Share App
+                                    </button>
+
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button class="list-group-item list-group-item-action border-0 px-2">
+                                        <i class="bi bi-power me-2"></i>Logout
+                                        </button>
+                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -198,77 +202,6 @@
             });
         @endif
         
-        // Order filtering and search functionality
-        document.addEventListener('DOMContentLoaded', function() {
-
-            // Handle avatar upload
-            const avatarInput = document.getElementById('avatarInput');
-            if (avatarInput) {
-                avatarInput.addEventListener('change', function(e) {
-                    if (this.files && this.files[0]) {
-                        const formData = new FormData();
-                        formData.append('avatar', this.files[0]);
-                        formData.append('_token', '{{ csrf_token() }}');
-
-                        fetch('{{ route('profile.avatar.update') }}', {
-                                method: 'POST',
-                                body: formData
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    // Update avatar image
-                                    const avatarImg = document.querySelector('.user-avatar');
-                                    if (avatarImg) {
-                                        avatarImg.src = data.avatar_url + '?t=' + new Date().getTime();
-                                    }
-
-                                    // Show success message
-                                    const toast = new bootstrap.Toast(document.getElementById(
-                                        'avatarUpdateToast'));
-                                    toast.show();
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                    }
-                });
-            }
-
-            // Toggle two-factor authentication
-            const twoFactorSwitch = document.getElementById('twoFactorSwitch');
-            if (twoFactorSwitch) {
-                twoFactorSwitch.addEventListener('change', function() {
-                    const isEnabled = this.checked;
-
-                    fetch('{{ route('profile.two-factor.update') }}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'X-Requested-With': 'XMLHttpRequest'
-                            },
-                            body: JSON.stringify({
-                                enabled: isEnabled
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (!data.success) {
-                                // Revert switch if update failed
-                                this.checked = !isEnabled;
-                                alert('Failed to update two-factor authentication settings.');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            this.checked = !isEnabled;
-                        });
-                });
-            }
-        });
-
         // Function to cancel order
         function cancelOrder(orderId) {
             if (confirm('Are you sure you want to cancel this order?')) {
@@ -323,6 +256,46 @@
                     ].join(' ');
                 }
             });
+        }
+
+        // Share App Function
+        function shareApp(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const appUrl = window.location.origin;
+            const appName = '{{ config('app.name') }}';
+            const shareData = {
+                title: appName,
+                text: `Check out ${appName} - Quality delivery or takeaway food`,
+                url: appUrl
+            };
+
+            if (navigator.share) {
+                // Use native share API (mobile devices)
+                navigator.share(shareData)
+                    .then(() => console.log('Shared successfully'))
+                    .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // Fallback for desktop - copy to clipboard
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(appUrl).then(() => {
+                        // Show success message
+                        showToast('Application URL copied to clipboard!', {
+                            variant: 'success',
+                            delay: 3000
+                        });
+                    }).catch(() => {
+                        // Fallback to manual copy
+                        prompt('Copy this URL to share:', appUrl);
+                    });
+                } else {
+                    // Final fallback
+                    prompt('Copy this URL to share:', appUrl);
+                }
+            }
+            
+            return false;
         }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
