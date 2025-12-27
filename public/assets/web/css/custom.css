@@ -1,7 +1,26 @@
 /*============================================================================================*/
 /* Your custom styles below */
 /*============================================================================================*/
-
+@import url('variables.css');
 .mt-6 {
     margin-top: 4rem !important;
+}
+
+.bg-main {
+    background-color: var(--main-color);
+}
+
+.text-main {
+    color: var(--main-color) !important;
+}
+
+.btn-main {
+    background-color: var(--main-color) !important;
+    border-color: var(--main-color) !important;
+    color: white !important;
+}
+
+.btn-main:hover {
+    background-color: darken(var(--main-color), 10%) !important;
+    border-color: darken(var(--main-color), 10%) !important;
 }

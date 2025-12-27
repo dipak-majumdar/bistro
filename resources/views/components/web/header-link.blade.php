@@ -11,7 +11,7 @@
 
 <!-- BASE CSS -->
 @vite('resources/css/web.css')
-<link href="{{ asset('assets/web/css/bootstrap.min.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('assets/web/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
 <link href="{{ asset('assets/web/css/style.css') }}" rel="stylesheet">
 
 <!-- SPECIFIC CSS -->

@@ -1,11 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <div class="mb-4">
-            <h2 class="h5 mb-2">{{ __('Profile Information') }}</h2>
-            <p class="text-muted small">
-                {{ __("Update your account's profile information and email address.") }}
-            </p>
-        </div>
+        <h2 class="h5 mb-4">{{ __('Profile Information') }}</h2>
 
         <form id="send-verification" method="post" action="{{ route('verification.send') }}">
             @csrf
@@ -33,6 +28,23 @@
             </div>
 
             <div class="mb-3">
+                <input type="number" 
+                       class="form-control @error('mobile') is-invalid @enderror" 
+                       id="mobile" 
+                       name="mobile" 
+                       value="{{ old('mobile', $user->mobile) }}" 
+                       required 
+                       autofocus 
+                       autocomplete="mobile"
+                       placeholder="Enter mobile">
+                @error('mobile')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
 
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                     <div class="alert alert-warning mt-2">
@@ -50,7 +62,7 @@
             </div>
 
             <div class="d-flex align-items-center gap-3 text-end">
-                <button type="submit" class="btn btn-primary ms-auto">
+                <button type="submit" class="btn btn-sm btn-primary ms-auto">
                     {{ __('Save') }}
                 </button>
             </div>

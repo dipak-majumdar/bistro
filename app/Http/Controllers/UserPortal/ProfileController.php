@@ -41,6 +41,7 @@ class ProfileController extends Controller
             
             // Update user data
             $user->name = $validated['name'];
+            $user->mobile = $validated['mobile'];
             
             
             // Save the user

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="FooYes - Quality delivery or takeaway food">
-    <meta name="author" content="Ansonika">
+    <meta name="author" content="Dipak Majumdar">
     <title>{{ config('app.name') }} - Quality delivery or takeaway food</title>
 
     <x-web.header-link />
@@ -30,25 +30,15 @@
         <section class="container mt-5 p-3 p-md-4">
 
             <!-- Settings Tab -->
-            <div class="">
+            <div class="mt-5">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card border-0 shadow-sm mb-4">
-                            <div class="card-body text-center">
-                                <div class="position-relative d-inline-block mb-3">
-                                    <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('assets/web/img/avatar.jpg') }}"
-                                        class="rounded-circle" width="120" height="120" alt="Profile">
-                                    <button
-                                        class="btn btn-primary btn-sm rounded-circle position-absolute bottom-0 end-0"
-                                        style="width: 36px; height: 36px;"
-                                        onclick="document.getElementById('avatarInput').click()">
-                                        <i class="fas fa-camera"></i>
-                                    </button>
-                                    <input type="file" id="avatarInput" class="d-none" accept="image/*">
-                                </div>
+                            <div class="card-body text-start">
                                 <h5 class="mb-1">{{ Auth::user()->name }}</h5>
-                                <p class="text-muted mb-3">{{ Auth::user()->email }}</p>
-                                <div class="d-flex justify-content-center gap-2">
+                                <p class="text-muted mb-3"><i class="bi bi-telephone me-2 text-main"></i>{{ Auth::user()->mobile }}</p>
+                                {{-- <p class="text-muted mb-3"><i class="bi bi-envelope me-2 text-main"></i>{{ Auth::user()->email }}</p> --}}
+                                <div class="d-flex justify-content-start gap-2">
                                     <span class="badge bg-light text-dark fw-normal">
                                         <i class="fas fa-star text-warning me-1"></i>
                                         {{ Auth::user()->loyalty_tier ?? 'Silver' }} Member
