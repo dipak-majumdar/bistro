@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
         \App\Providers\MacroServiceProvider::class,
+        \Bistro\Banners\BannerServiceProvider::class,
     ])
     ->withRouting(
         web: __DIR__.'/../routes/web.php',

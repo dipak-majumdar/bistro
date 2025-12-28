@@ -4,8 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a2afcd57b968b97a7aa3fbd5f48c202",
+    "content-hash": "55f51d2519ad5e468d1206a5d25801da",
     "packages": [
+        {
+            "name": "bistro/banners",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "packages/bistro/banners",
+                "reference": "bcb197243ced846e24fa3cac3d4857c0646de02a"
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bistro\\Banners\\BannerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bistro\\Banners\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dipak Majumdar",
+                    "email": "dipakmajumdar@zohomail.in"
+                }
+            ],
+            "description": "Dynamic banner management system for Laravel applications",
+            "transport-options": {
+                "relative": true
+            }
+        },
         {
             "name": "brick/math",
             "version": "0.14.0",
@@ -8861,7 +8899,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "bistro/banners": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
