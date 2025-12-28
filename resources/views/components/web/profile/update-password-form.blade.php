@@ -1,23 +1,21 @@
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-body">
-        <div class="mb-4">
-            <h2 class="h5 mb-2">{{ __('Update Password') }}</h2>
-            <p class="text-muted small">
-                {{ __('Ensure your account is using a long, random password to stay secure.') }}
-            </p>
-        </div>
-
         <form method="post" action="{{ route('password.update') }}" class="needs-validation" novalidate>
             @csrf
             @method('put')
 
             <div class="mb-3">
                 <label for="update_password_current_password" class="form-label">{{ __('Current Password') }}</label>
-                <input type="password" 
-                       class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" 
-                       id="update_password_current_password" 
-                       name="current_password" 
-                       autocomplete="current-password">
+                <div class="input-group">
+                    <input type="password" 
+                           class="form-control @error('current_password', 'updatePassword') is-invalid @enderror" 
+                           id="update_password_current_password" 
+                           name="current_password" 
+                           autocomplete="current-password">
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('update_password_current_password', this)">
+                        <i class="bi bi-eye" id="update_password_current_password-icon"></i>
+                    </button>
+                </div>
                 @error('current_password', 'updatePassword')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -27,11 +25,16 @@
 
             <div class="mb-3">
                 <label for="update_password_password" class="form-label">{{ __('New Password') }}</label>
-                <input type="password" 
-                       class="form-control @error('password', 'updatePassword') is-invalid @enderror" 
-                       id="update_password_password" 
-                       name="password" 
-                       autocomplete="new-password">
+                <div class="input-group">
+                    <input type="password" 
+                           class="form-control @error('password', 'updatePassword') is-invalid @enderror" 
+                           id="update_password_password" 
+                           name="password" 
+                           autocomplete="new-password">
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('update_password_password', this)">
+                        <i class="bi bi-eye" id="update_password_password-icon"></i>
+                    </button>
+                </div>
                 @error('password', 'updatePassword')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -41,15 +44,24 @@
 
             <div class="mb-4">
                 <label for="update_password_password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
-                <input type="password" 
-                       class="form-control" 
-                       id="update_password_password_confirmation" 
-                       name="password_confirmation" 
-                       autocomplete="new-password">
+                <div class="input-group">
+                    <input type="password" 
+                           class="form-control" 
+                           id="update_password_password_confirmation" 
+                           name="password_confirmation" 
+                           autocomplete="new-password">
+                    <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('update_password_password_confirmation', this)">
+                        <i class="bi bi-eye" id="update_password_password_confirmation-icon"></i>
+                    </button>
+                </div>
             </div>
 
-            <div class="d-flex align-items-center gap-3">
-                <button type="submit" class="btn btn-primary">
+            <p class="text-muted small">
+                {{ __('Ensure your account is using a long, random password to stay secure.') }}
+            </p>
+            <div class="d-flex align-items-center justify-content-end gap-3">
+                <button type="submit" class="btn btn-sm btn-primary">
+                    <i class="bi bi-floppy2 me-1"></i>
                     {{ __('Save') }}
                 </button>
 
@@ -62,6 +74,25 @@
         </form>
     </div>
 </div>
+
+<script>
+function togglePassword(inputId, button) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(inputId + '-icon');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+        button.title = 'Hide password';
+    } else {
+        input.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+        button.title = 'Show password';
+    }
+}
+</script>
 
 @push('scripts')
 <script>

@@ -1,6 +1,5 @@
 <div class="card rounded shadow-sm mb-4">
     <div class="card-body">
-        <h2 class="h5 mb-4">{{ __('Profile Information') }}</h2>
 
         <form id="send-verification" method="post" action="{{ route('verification.send') }}">
             @csrf
@@ -63,6 +62,7 @@
 
             <div class="d-flex align-items-center gap-3 text-end">
                 <button type="submit" class="btn btn-sm btn-primary ms-auto">
+                    <i class="bi bi-floppy2 me-1"></i>
                     {{ __('Save') }}
                 </button>
             </div>

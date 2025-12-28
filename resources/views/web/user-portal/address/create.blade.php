@@ -4,12 +4,14 @@
 @endpush
 
 @section('main')
-    <section class="container px-3 px-md-4">
+    <section class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-4">{{ isset($address) ? 'Edit Address' : 'Add New Address' }}</h4>
+        </div>
         <div class="row g-4">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="mb-4">{{ isset($address) ? 'Edit Address' : 'Add New Address' }}</h5>
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul class="mb-0">

@@ -7,6 +7,7 @@
 
     <div class="text-end">
         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+            <i class="bi bi-trash me-1"></i>
             Delete Account
         </button>
     </div>
@@ -57,9 +58,11 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x me-1"></i>
                             {{ __('Cancel') }}
                         </button>
                         <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="bi bi-trash me-1"></i>
                             {{ __('Delete Account') }}
                         </button>
                     </div>

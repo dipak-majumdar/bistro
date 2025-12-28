@@ -41,7 +41,7 @@ class LoginActivityController extends Controller
             }
         }
         
-        $activities = $query->paginate(20);
+        $activities = $query->paginate(6);
         
         // Get statistics
         $stats = [

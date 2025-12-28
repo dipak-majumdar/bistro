@@ -1,14 +1,13 @@
 @extends('layouts.web.user-portal.main-layout')
 
 @section('main')
-    <div class="container px-3 px-md-4">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4>{{ __('Update Password') }}</h4>
+        </div>
 
         <!-- Update Password Card -->
-        <div class="card shadow-sm mb-4">
-            <div class="card-body p-4">
-                <x-web.profile.update-password-form />
-            </div>
-        </div>
+        <x-web.profile.update-password-form />
 
     </div>
 @endsection

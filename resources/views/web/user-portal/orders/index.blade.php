@@ -77,9 +77,9 @@
             color: #0d6efd;
         }
     </style>
-    <section class="container px-3 px-md-4">
+    <section class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-
+        <h4 class="mb-0">{{ __('My Orders') }}</h4>
             <div>
                 <div class="input-group input-group-sm" style="width: 250px;">
                     <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>

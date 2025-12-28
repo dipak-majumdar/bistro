@@ -25,11 +25,11 @@
 
             @auth
             <li>
-                <div class="dropdown user clearfix">
-                    <a href="#" data-bs-toggle="dropdown">
+                <div class="user">
+                    <a href="{{ route('dashboard') }}" >
                         <figure><img src="{{ asset('assets/web/img/avatar.jpg') }}" alt=""></figure>
                     </a>
-                    <div class="dropdown-menu">
+                    {{-- <div class="dropdown-menu">
                         <div class="dropdown-menu-content">
                             <ul>
                                 <li><a href="{{ route('dashboard') }}"><i class="icon_cog"></i>Dashboard</a></li>
@@ -44,7 +44,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <!-- /dropdown -->
             </li>

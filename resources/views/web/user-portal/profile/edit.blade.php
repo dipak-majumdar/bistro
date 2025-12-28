@@ -1,7 +1,10 @@
 @extends('layouts.web.user-portal.main-layout')
 
 @section('main')
-    <div class="container px-3 px-md-4">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">{{ __('Profile Information') }}</h4>
+        </div>
 
         <!-- Profile Information Card -->
         <x-web.profile.update-profile-information-form :user="$user" />

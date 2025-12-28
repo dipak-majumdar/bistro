@@ -51,11 +51,11 @@
             opacity: 1;
         }
     </style>
-    <section class="container px-3 px-md-4">
+    <section class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">{{ __('Address Book') }}</h4>
 
-        <div class="text-end mb-4 mt-4">
-            <a class="btn btn-sm btn-outline-primary rounded" href="{{ route('profile.address-book.create') }}">Add New
-                Address</a>
+            <a class="btn btn-sm btn-outline-primary rounded" href="{{ route('profile.address-book.create') }}">Add New Address</a>
         </div>
 
         @if (isset($addressBooks) && count($addressBooks) > 0)
