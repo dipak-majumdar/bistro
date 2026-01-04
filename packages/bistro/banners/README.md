@@ -12,7 +12,7 @@ composer require bistro/banners
 
 ### 1. Register the Service Provider
 
-Add to `config/app.php`:
+Add to `bootstrap/app.php`:
 
 ```php
 'providers' => [
