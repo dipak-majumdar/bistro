@@ -72,7 +72,3 @@
         </nav>
     </div>
 </header>
-<script>
-    // const isLoggedIn = {{Auth::check() ? Auth::check() : false}};
-    // const userId = {{ Auth::id() }};
-</script>

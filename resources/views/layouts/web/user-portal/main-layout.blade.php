@@ -164,27 +164,13 @@
 
     @yield('elements')
 
-    <!-- Toast for avatar update -->
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        <div id="avatarUpdateToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <i class="fas fa-check-circle text-success me-2"></i>
-                <strong class="me-auto">Success</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Your profile picture has been updated successfully.
-            </div>
-        </div>
-    </div>
-<!-- Global Toast Component -->
-<x-web.component.toast />
+    <!-- Global Toast Component -->
+    <x-web.component.toast />
 
     <!-- COMMON SCRIPTS -->
     <x-web.footer-js-links />
 
     @yield('custom-js')
-
 
     <!-- Autocomplete -->
     <script>
@@ -236,27 +222,6 @@
             });
         });
 
-        function initMap() {
-            var input = document.getElementById('autocomplete');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-
-            autocomplete.addListener('place_changed', function() {
-                var place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    window.alert("Autocomplete's returned place contains no geometry");
-                    return;
-                }
-
-                var address = '';
-                if (place.address_components) {
-                    address = [
-                        (place.address_components[0] && place.address_components[0].short_name || ''),
-                        (place.address_components[1] && place.address_components[1].short_name || ''),
-                        (place.address_components[2] && place.address_components[2].short_name || '')
-                    ].join(' ');
-                }
-            });
-        }
 
         // Share App Function
         function shareApp(event) {
@@ -297,8 +262,6 @@
             
             return false;
         }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
     </script>
 
 </body>
