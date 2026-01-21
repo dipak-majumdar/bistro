@@ -2,52 +2,20 @@
 @section('header')
     <link href="{{ asset('assets/web/css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/web/css/detail-page.css') }}" rel="stylesheet">
-    {{-- <style>
-        /* Ensure toast sits above Magnific Popup (.mfp-wrap/.mfp-bg z-index: 999999) */
-        #liveToastContainer {
-            z-index: 2147483647 !important; /* max 32-bit */
-            position: fixed;
-            top: 0;
-            right: 0;
-            pointer-events: none; /* container ignores clicks */
-        }
-        #liveToastContainer .toast {
-            pointer-events: auto; /* but toast remains clickable */
-            position: relative;
-            z-index: inherit;
-        }
-        /* Counter Magnific Popup blur rule: .mfp-wrap ~ * { filter: blur(...) } */
-        .mfp-wrap ~ #liveToastContainer {
-            -webkit-filter: none !important;
-            -moz-filter: none !important;
-            -o-filter: none !important;
-            -ms-filter: none !important;
-            filter: none !important;
-            backdrop-filter: none !important;
-        }
-        .mfp-wrap ~ #liveToastContainer * {
-            -webkit-filter: none !important;
-            -moz-filter: none !important;
-            -o-filter: none !important;
-            -ms-filter: none !important;
-            filter: none !important;
-            backdrop-filter: none !important;
-        }
-      </style> --}}
 @endsection
 @section('main')
-    <x-web.home-hero />
+    <x-web.home.home-hero />
 
-    <x-web.home-categories :categories="$categories" />
+    <x-web.home.home-categories :categories="$categories" />
 
-    <x-web.popular-items :items="$mostOrderedItems" />
+    <x-web.home.popular-items :items="$mostOrderedItems" />
 
-    <x-web.first-banner />
+    <x-web.home.first-banner />
 
-    <x-web.large-cards-slider />
+    <x-web.home.large-cards-slider />
 
     {{-- @dd($categoryWithItems) --}}
-    <x-web.item-list :categorywithitems="$categoryWithItems" />
+    <x-web.home.item-list :categorywithitems="$categoryWithItems" />
 
 
 @endsection

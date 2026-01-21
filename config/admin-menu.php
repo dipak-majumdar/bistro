@@ -10,6 +10,13 @@ return [
             'icon' => 'airplay',
         ],
         [
+            'priority' => 11,
+            'type' => 'link',
+            'label' => 'Order Management',
+            'route' => 'admin.orders',
+            'icon' => 'grid-3x3',
+        ],
+        [
             'priority' => 20,
             'type' => 'accordion',
             'label' => 'Item Menu',
@@ -42,18 +49,31 @@ return [
             ],
         ],
         [
-            'priority' => 11,
-            'type' => 'link',
-            'label' => 'Orders',
-            'route' => 'admin.orders',
-            'icon' => 'grid-3x3',
-        ],
-        [
             'priority' => 40,
             'type' => 'link',
             'label' => 'Customers',
             'route' => 'admin.customers',
             'icon' => 'grid-3x3',
+        ],
+        [
+            'priority' => 41,
+            'type' => 'accordion',
+            'label' => 'Home Layout',
+            'icon' => 'grid-3x3',
+            'children' => [
+                [
+                    'priority' => 1,
+                    'type' => 'link',
+                    'label' => 'Components',
+                    'route' => 'admin.home-component'
+                ],
+                [
+                    'priority' => 2,
+                    'type' => 'link',
+                    'label' => 'Component Order',
+                    'route' => 'admin.component-orders',
+                ],
+            ]
         ],
         [
             'priority' => 100,

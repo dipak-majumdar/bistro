@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+// Admin API 
+use App\Http\Controllers\Admin\API\ComponentController;
+
+// Web API 
 use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\ItemController;
 use App\Http\Controllers\Api\CartController;
@@ -45,3 +50,10 @@ Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
 // Razorpay webhook (should be excluded from CSRF protection)
 Route::post('/razorpay/webhook', [RazorpayWebhookController::class, 'handle'])
     ->middleware('throttle:60,1');
+
+// Admin API Routes 
+Route::get('/admin/component/{componentId}', [ComponentController::class, 'getComponentById']);
+Route::get('/admin/component/by-name/{componentName}', [ComponentController::class, 'getComponentByName']);
+Route::put('/admin/component/{componentId}', [ComponentController::class, 'updateComponent']);
+Route::delete('/admin/component/{componentId}', [ComponentController::class, 'destroy']);
+
