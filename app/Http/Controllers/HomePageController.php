@@ -10,6 +10,9 @@ use App\Services\MenuItemService;
 use App\Services\MenuCategoryService;
 use App\Models\MenuCategory;
 
+use App\Models\HomeComponents;
+use App\Models\HomeComponentOrder;
+
 class HomePageController extends Controller
 {
 
@@ -29,11 +32,14 @@ class HomePageController extends Controller
                 $query->with('images')->orderBy('id', 'desc')->limit(4);
             }])->whereHas('items')->get();
             
+            $components = HomeComponentOrder::with('homeLayout')->Ordered()->get();
+            
             return view('web.home', [
                 'items' => $menuItems['menuItems'],
                 'categories' => $categories,
                 'mostOrderedItems' => $mostOrderedItems,
-                'categoryWithItems' => $categoryWithItems
+                'categoryWithItems' => $categoryWithItems,
+                'components' => $components
             ]);
             
         } catch (\Exception $e) {

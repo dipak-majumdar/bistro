@@ -32,7 +32,7 @@ class HomeComponentOrder extends Model
      */
     public function homeLayout(): BelongsTo
     {
-        return $this->belongsTo(HomeComponents::class, 'layout_id');
+        return $this->belongsTo(HomeComponents::class, 'layout_id', 'id');
     }
 
     /**

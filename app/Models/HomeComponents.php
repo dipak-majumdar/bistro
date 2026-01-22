@@ -33,9 +33,9 @@ class HomeComponents extends Model
     /**
      * Get components in order
      */
-    public function getOrderedComponents(): array
+    public static function getOrderedComponents(): array
     {
-        return $this->componentOrders()
+        return self::active()->get()->componentOrders()
             ->orderBy('sort_order')
             ->pluck('component_id')
             ->toArray();

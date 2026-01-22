@@ -4,19 +4,29 @@
     <link href="{{ asset('assets/web/css/detail-page.css') }}" rel="stylesheet">
 @endsection
 @section('main')
-    <x-web.home.home-hero />
 
-    <x-web.home.home-categories :categories="$categories" />
-
-    <x-web.home.popular-items :items="$mostOrderedItems" />
-
-    <x-web.home.first-banner />
-
-    <x-web.home.large-cards-slider />
-
-    {{-- @dd($categoryWithItems) --}}
-    <x-web.home.item-list :categorywithitems="$categoryWithItems" />
-
+    @foreach ($components as $component)
+        @switch($component->homeLayout->component)
+            @case('first-banner')
+                <x-web.home.first-banner />
+                @break
+            @case('home-categories')
+                <x-web.home.home-categories :categories="$categories" />
+                @break
+            @case('home-hero')
+                <x-web.home.home-hero />
+                @break
+            @case('Item-list')
+                <x-web.home.Item-list :categorywithitems="$categoryWithItems" />
+                @break
+            @case('large-cards-slider')
+                <x-web.home.large-cards-slider />
+                @break
+            @case('popular-items')
+                <x-web.home.popular-items :items="$mostOrderedItems" />
+                @break
+        @endswitch
+    @endforeach
 
 @endsection
 
