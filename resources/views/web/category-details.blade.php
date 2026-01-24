@@ -25,15 +25,9 @@
 </div>
 <!-- /page_header -->
 
-<div class="collapse" id="collapseMap">
-	<div id="map" class="map"></div>
-</div>
-<!-- /Map -->
-
 <div class="container margin_30_20">			
 	<div class="row">
 		<aside class="col-lg-3" id="sidebar_fixed">
-			<a class="btn_map d-flex align-items-center justify-content-center" data-bs-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" ><span class="btn_map_txt" data-text-swap="Hide Map" data-text-original="View on Map">View on Map</span></a>
 			<div class="type_delivery">
 				<ul class="clearfix">
 					<li>
@@ -52,7 +46,6 @@
 			</div>
 			<!-- /type_delivery -->
 
-			<a class="btn_map mobile btn_filters" data-bs-toggle="collapse" href="#collapseMap"><i class="icon_pin_alt"></i></a>
 			<a href="#0" class="open_filters btn_filters"><i class="icon_adjust-vert"></i><span>Filters</span></a>
 		
 			<div class="filter_col">

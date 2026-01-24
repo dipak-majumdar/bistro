@@ -54,13 +54,13 @@
     });
 
     // Button show/hide map
-    $(".btn_map").on("click", function () {
-        var el = $(".btn_map_txt");
-        el.text() == el.data("text-swap") ? el.text(el.data("text-original")) : el.text(el.data("text-swap"));
-        $('html, body').animate({
-            scrollTop: $("body").offset().top
-        }, 600);
-    });
+    // $(".btn_map").on("click", function () {
+    //     var el = $(".btn_map_txt");
+    //     el.text() == el.data("text-swap") ? el.text(el.data("text-original")) : el.text(el.data("text-swap"));
+    //     $('html, body').animate({
+    //         scrollTop: $("body").offset().top
+    //     }, 600);
+    // });
 
     // Range slider
     $('input[type="range"]').rangeslider({
