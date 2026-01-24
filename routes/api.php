@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RazorpayController;
 use App\Http\Controllers\RazorpayWebhookController;
+use App\Http\Controllers\CategoryPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +57,7 @@ Route::get('/admin/component/{componentId}', [ComponentController::class, 'getCo
 Route::get('/admin/component/by-name/{componentName}', [ComponentController::class, 'getComponentByName']);
 Route::put('/admin/component/{componentId}', [ComponentController::class, 'updateComponent']);
 Route::delete('/admin/component/{componentId}', [ComponentController::class, 'destroy']);
+
+// Category Page API Routes
+Route::get('/category/load-more', [CategoryPageController::class, 'loadMoreItems']);
 

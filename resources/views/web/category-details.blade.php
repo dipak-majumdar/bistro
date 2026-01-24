@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
-				<h1>145 restaurants in Convent Street 2983</h1>
+				<h1>{{ $totalItems }} total items</h1>
 				<a href="#0">Change address</a>
 			</div>
 			<div class="col-xl-4 col-lg-5 col-md-5">
@@ -198,7 +198,7 @@
 			</div>
 			<!-- /promo -->
 			
-			<div class="row">
+			<div class="row" id="menuItemsContainer">
 				<div class="col-12"><h2 class="title_small">Top Rated</h2></div>
 				@foreach ($menuItems as $menuItem)
 				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
@@ -229,253 +229,24 @@
 				</div>
 				<!-- /strip grid -->
 				@endforeach
-				{{-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="{{ asset('assets/web/img/lazy-placeholder.png') }}" data-src="{{ asset('assets/web/img/location_2.jpg') }}" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Burghers</small>
-								<div class="item_title">
-									<h3>Best Burghers</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							<li><span class="take no">Takeaway</span> <span class="deliv yes">Delivery</span></li>
-							<li>
-								<div class="score"><strong>9.5</strong></div>
-							</li>
-						</ul>
+				
+				<div class="col-12 text-center mt-4" id="loadMoreTrigger">
+					<div id="loadingSpinner" class="spinner-border text-primary" style="display:none;" role="status">
+						{{-- <span class="sr-only">Loading...</span> --}}
 					</div>
+
+					{{-- <div id="noMoreItems" class="d-none">
+						<p class="text-muted">No more items to load</p>
+					</div> --}}
 				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<span class="ribbon off">15% off</span>
-							<img src="img/lazy-placeholder.png" data-src="img/location_3.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Vegetarian</small>
-								<div class="item_title">
-									<h3>Vego Life</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-						   <li><span class="take yes">Takeaway</span> <span class="deliv no">Delivery</span></li>
-							<li>
-								<div class="score"><strong>7.5</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_4.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Japanese</small>
-								<div class="item_title">
-									<h3>Sushi Temple</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							 <li><span class="take no">Takeaway</span> <span class="deliv no">Delivery</span></li>
-							<li>
-								<div class="score"><strong>9.5</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_5.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Pizza</small>
-								<div class="item_title">
-									<h3>Auto Pizza</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							 <li><span class="take yes">Takeaway</span> <span class="deliv no">Delivery</span></li>
-							<li>
-								<div class="score"><strong>7.0</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_6.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Burghers</small>
-								<div class="item_title">
-									<h3>Alliance</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							 <li><span class="take no">Takeaway</span> <span class="deliv yes">Delivery</span></li>
-							<li>
-								<div class="score"><strong>8.9</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_7.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Chinese</small>
-								<div class="item_title">
-									<h3>Alliance</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							<li><span class="take no">Takeaway</span> <span class="deliv yes">Delivery</span></li>
-							<li>
-								<div class="score"><strong>8.9</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_8.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Sushi</small>
-								<div class="item_title">
-									<h3>Dragon Tower</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							<li><span class="take yes">Takeaway</span> <span class="deliv no">Delivery</span></li>
-							<li>
-								<div class="score"><strong>8.9</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_9.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Mexican</small>
-								<div class="item_title">
-									<h3>El Paso Tacos</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							<li><span class="take yes">Takeaway</span> <span class="deliv yes">Delivery</span></li>
-							<li>
-								<div class="score"><strong>8.9</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_10.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Bakery</small>
-								<div class="item_title">
-									<h3>Monnalisa</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							<li><span class="take yes">Takeaway</span> <span class="deliv yes">Delivery</span></li>
-							<li>
-								<div class="score"><strong>8.9</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_11.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Mexican</small>
-								<div class="item_title">
-									<h3>Guachamole</h3>
-									<small>135 Newtownards Road</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							<li><span class="take yes">Takeaway</span> <span class="deliv yes">Delivery</span></li>
-							<li>
-								<div class="score"><strong>8.9</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid -->
-				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-					<div class="strip">
-						<figure>
-							<img src="img/lazy-placeholder.png" data-src="img/location_12.jpg" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
-								<small>Chinese</small>
-								<div class="item_title">
-									<h3>Pechino Express</h3>
-									<small>27 Old Gloucester St</small>
-								</div>
-							</a>
-						</figure>
-						<ul>
-							<li><span class="take no">Takeaway</span> <span class="deliv yes">Delivery</span></li>
-							<li>
-								<div class="score"><strong>8.9</strong></div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /strip grid --> --}}
-			</div>
-			<!-- /row -->
-			<div class="pagination_fg">
-			  <a href="#">&laquo;</a>
-			  <a href="#" class="active">1</a>
-			  <a href="#">2</a>
-			  <a href="#">3</a>
-			  <a href="#">4</a>
-			  <a href="#">5</a>
-			  <a href="#">&raquo;</a>
+
 			</div>
 		</div>
-		<!-- /col -->
-	</div>		
-</div>
+		<!-- /row -->
+	</div>
+	<!-- /col -->
+</div>		
+
 <!-- /container -->
 @endsection
 
@@ -486,6 +257,110 @@
 <!-- SPECIFIC SCRIPTS -->
 <script src="{{ asset('assets/web/js/sticky_sidebar.min.js') }}"></script>
 <script src="{{ asset('assets/web/js/specific_listing.js') }}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const menuItemsContainer = document.getElementById('menuItemsContainer');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    // const noMoreItems = document.getElementById('noMoreItems');
+    const loadMoreTrigger = document.getElementById('loadMoreTrigger');
+
+    let offset = 12;
+    let limit = 12;
+    let isLoading = false;
+    let hasMore = {{ $totalItems > 12 ? 'true' : 'false' }};
+    const categoryId = {{ $categoryId ?? 'null' }};
+
+    if (!categoryId || !hasMore) return;
+
+    function loadMoreItems() {
+        if (isLoading || !hasMore) return;
+
+        isLoading = true;
+        loadingSpinner.style.display = 'inline-block';
+
+        fetch(`/api/category/load-more?category_id=${categoryId}&offset=${offset}&limit=${limit}`)
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success || data.items.length === 0) {
+                    hasMore = false;
+                    // noMoreItems.classList.remove('d-none');
+                    observer.disconnect();
+                    return;
+                }
+
+                let html = '';
+
+                data.items.forEach(item => {
+                    const imageUrl = item.images?.length
+                        ? `/storage/${item.images[0].image_path}`
+                        : '/assets/web/img/lazy-placeholder.png';
+
+                    html += `
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                            <div class="strip">
+                                <figure>
+                                    <span class="ribbon off">15% off</span>
+                                    <img src="/assets/web/img/lazy-placeholder.png"
+                                         data-src="${imageUrl}"
+                                         class="img-fluid lazy" alt="">
+                                    <a href="/restaurant/${item.slug}" class="strip_info">
+                                        <small>${item.category_name ?? ''}</small>
+                                        <div class="item_title">
+                                            <h3>${item.name}</h3>
+                                            <small>${item.description ?? ''}</small>
+                                        </div>
+                                    </a>
+                                </figure>
+                                <ul>
+                                    <li>
+                                        <span class="take yes">Takeaway</span>
+                                        <span class="deliv yes">Delivery</span>
+                                    </li>
+                                    <li><div class="score"><strong>8.9</strong></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                loadMoreTrigger.insertAdjacentHTML('beforebegin', html);
+                offset += data.items.length;
+				console.info(offset);
+				console.log(data);
+
+				if (!data.hasMore) {
+                    hasMore = false;
+                    // noMoreItems.classList.remove('d-none');
+                    observer.disconnect();
+                }
+
+                if (window.lazyLoadInstance) {
+                    lazyLoadInstance.update();
+                }
+            })
+            .catch(err => console.error(err))
+            .finally(() => {
+                isLoading = false;
+                loadingSpinner.style.display = 'none';
+            });
+    }
+
+    const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            loadMoreItems();
+        }
+    }, {
+        root: null,
+        rootMargin: '150px',
+        threshold: 0
+    });
+
+    observer.observe(loadMoreTrigger);
+});
+</script>
+
 @endsection
 <!-- Map -->
 {{-- <script src="js/main_map_scripts.js"></script>

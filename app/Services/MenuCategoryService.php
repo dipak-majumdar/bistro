@@ -7,22 +7,22 @@ use App\Models\MenuCategory;
 
 class MenuCategoryService
 {
-    public function index()
+    public static function allCategories()
     {
         return MenuCategory::all();
     }
 
-    public function show($id)
+    public static function show($id)
     {
         return MenuCategory::findOrFail($id);
     }
 
-    public function showBySlug($slug)
+    public static function showBySlug($slug)
     {
         return MenuCategory::where('slug', $slug)->first();
     }
     
-    public function store(Request $request)
+    public static function store(Request $request)
     {
         $request->validate([
             'name' => 'required',

@@ -62,16 +62,14 @@ class MenuItemService
         return $menuItem;
     }
     
-    public function itemsByCategory($CategoryId)
+    public static function itemsByCategory($CategoryId)
     {
         // return MenuItem::with('images', 'category')->where('menu_items.category_id', $CategoryId)
         // ->get();
         return MenuItem::with('images')
         ->join('menu_categories', 'menu_items.category_id', '=', 'menu_categories.id')
         ->select('menu_items.*', 'menu_categories.name as category_name')
-        ->orderBy('menu_items.id', 'desc')->where('menu_items.category_id', $CategoryId)
-        ->get();
-
+        ->orderBy('menu_items.id', 'desc')->where('menu_items.category_id', $CategoryId);
     }
     public function mostOrderedItems(int $limit)
     {
