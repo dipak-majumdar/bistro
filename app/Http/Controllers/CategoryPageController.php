@@ -17,10 +17,7 @@ class CategoryPageController extends Controller
         protected MenuCategoryService $menuCategoryService
     ) {
     }
-    public function categoryPage()
-    {
-        return view('web.category');
-    }
+  
 
     public function categoryDetails($slug)
     {

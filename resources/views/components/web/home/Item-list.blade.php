@@ -1,28 +1,19 @@
 <div class="bg_gray">
     <div class="container margin_detail">
-        <div class="row">
+            <div class="main_title">
+                <span><em></em></span>
+                <h2>All Items</h2>
+                <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                <a href="#0">View All &rarr;</a>
+            </div>
             <div class="list_menu">
-
-                <div class="d-flex justify-content-center">
-                    <nav class="secondary_nav sticky_horizontal">
-                        <div class="container">
-                            <ul id="secondary_nav">
-                                <li><a href="#section-1">Starters</a></li>
-                                <li><a href="#section-2">Main Courses</a></li>
-                                <li><a href="#section-3">Desserts</a></li>
-                                <li><a href="#section-4">Drinks</a></li>
-                            </ul>
-                        </div>
-                        <span></span>
-                    </nav>
-                </div>
 
                 @foreach ($categorywithitems as $category)
                 <section id="section-{{ $category->id }}">
-                    <div class="d-flex justify-content-between">
+                    {{-- <div class="d-flex justify-content-between">
                         <h4>{{ $category->name }}</h4>
                         <a href="{{ route('category-details', $category->slug) }}" class="">View All <i class="bi bi-arrow-right"></i></a>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         @foreach ($category->items as $item)
                         <div class="col-md-6">
@@ -243,9 +234,6 @@
                 </section> --}}
                 <!-- /section -->
             </div>
-
-        </div>
-        <!-- /row -->
     </div>
     <!-- /container -->
 </div>

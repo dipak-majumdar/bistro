@@ -22,7 +22,6 @@ Route::get('/terms-conditions', [HomePageController::class, 'termsConditionsPage
 // Route::get('/faq', [HomePageController::class, 'faqPage'])->name('faq');
 
 
-Route::get('/categories', [CategoryPageController::class, 'categoryPage'])->name('categories');
 Route::get('/category/{category:slug}', [CategoryPageController::class, 'categoryDetails'])->name('category-details');
 
 Route::get('/item/{id}', [HomePageController::class, 'itemDetails'])->name('item-details');

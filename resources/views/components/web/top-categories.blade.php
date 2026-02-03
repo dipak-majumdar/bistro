@@ -6,7 +6,7 @@
             <div class="item">
                 <figure>
                     <img src="{{ asset('assets/web/img/cat_listing_placeholder.png') }}" data-src="{{ asset('storage/' . $category->image) ?? asset('assets/web/img/cat_listing_placeholder.png') }}" alt="" class="owl-lazy"></a>
-                    <a href="#0"><h3>{{ $category->name }}</h3></a>
+                    <a href="{{ route('category-details', $category->slug) }}"><h3>{{ $category->name }}</h3></a>
                 </figure>
             </div>
             @endforeach

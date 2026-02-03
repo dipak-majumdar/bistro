@@ -67,7 +67,7 @@
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="#0">Listing</a></li>
                 <li><a href="#0">Other Pages</a></li>
-                <li><a href="{{ route('categories') }}">Categories</a></li>
+                <li><a href="#">Categories</a></li>
             </ul>
         </nav>
     </div>

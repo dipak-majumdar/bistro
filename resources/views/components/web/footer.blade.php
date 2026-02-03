@@ -1,63 +1,34 @@
 <footer>
-    <div class="wave footer"></div>
+    {{-- <div class="wave footer"></div> --}}
     <div class="container margin_60_40 fix_mobile">
 
         <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <h3 data-bs-target="#collapse_1">Quick Links</h3>
-                <div class="collapse dont-collapse-sm links" id="collapse_1">
-                    <ul>
-                        <li><a href="{{ route('about') }}">About us</a></li>
-                        <li><a href="help.html">Help</a></li>
-                        <li><a href="{{ route('login') }}">My account</a></li>
-                        <li><a href="{{ route('contact') }}">Contacts</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h3 data-bs-target="#collapse_2">Categories</h3>
-                <div class="collapse dont-collapse-sm links" id="collapse_2">
-                    <ul>
-                        <li><a href="grid-listing-filterscol.html">Top Categories</a></li>
-                        <li><a href="grid-listing-filterscol-full-masonry.html">Best Rated</a></li>
-                        <li><a href="grid-listing-filterscol-full-width.html">Best Price</a></li>
-                        <li><a href="grid-listing-filterscol-full-masonry.html">Latest Submissions</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                    <h3 data-bs-target="#collapse_3">Contacts</h3>
-                <div class="collapse dont-collapse-sm contacts" id="collapse_3">
-                    <ul>
-                        <li><i class="icon_house_alt"></i>97845 Baker st. 567<br>Los Angeles - US</li>
-                        <li><i class="icon_mobile"></i>+94 423-23-221</li>
-                        <li><i class="icon_mail_alt"></i><a href="#0">info@domain.com</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                    <h3 data-bs-target="#collapse_4">Keep in touch</h3>
-                <div class="collapse dont-collapse-sm" id="collapse_4">
-                    <div id="newsletter">
-                        <div id="message-newsletter"></div>
-                        <form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
-                            <div class="form-group">
-                                <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
-                                <button type="submit" id="submit-newsletter"><i class="arrow_carrot-right"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="follow_us">
-                        <h5>Follow Us</h5>
-                        <ul>
-                            <li><a href="#0"><i class="bi bi-facebook"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-twitter-x"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-instagram"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-tiktok"></i></a></li>
-                            <li><a href="#0"><i class="bi bi-whatsapp"></i></a></li>
-                        </ul>
+            <div class="col-12 mb-5">
+                <div class="news-later-box text-center">
+                    <h3>Get Our Latest Updates</h3>
+                    <div class="" id="">
+                        <div id="newsletter">
+                            <div id="message-newsletter"></div>
+                            <form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
+                                <div class="form-group">
+                                    <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
+                                    <button type="submit" id="submit-newsletter"><i class="arrow_carrot-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="follow_us text-center">
+                            <ul>
+                                <li><a href="#0"><i class="bi bi-facebook"></i></a></li>
+                                <li><a href="#0"><i class="bi bi-twitter-x"></i></a></li>
+                                <li><a href="#0"><i class="bi bi-instagram"></i></a></li>
+                                <li><a href="#0"><i class="bi bi-whatsapp"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-12 text-center mb-5">
+                <span class="love-msg">Made With <i class="bi bi-heart-fill"></i> For You!</span>
             </div>
         </div>
         <!-- /row-->
@@ -65,7 +36,7 @@
         <div class="row add_bottom_25">
             <div class="col-lg-6">
                 <ul class="footer-selector clearfix">
-                    <li>
+                    {{-- <li>
                         <div class="styled-select lang-selector">
                             <select>
                                 <option value="English" selected>English</option>
@@ -82,15 +53,17 @@
                                 <option value="Euro">Euro</option>
                             </select>
                         </div>
-                    </li>
-                    <li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ asset('assets/web/img/cards_all.svg') }}" alt="" width="230" height="35" class="lazy"></li>
+                    </li> --}}
+                    <li><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ asset('assets/web/img/cards_all.svg') }}" alt="" width="200" height="28" class="lazy"></li>
                 </ul>
             </div>
             <div class="col-lg-6">
                 <ul class="additional_links">
+                    <li><a href="{{ route('terms-conditions') }}">About</a></li>
+                    <li><a href="{{ route('terms-conditions') }}">Help</a></li>
                     <li><a href="{{ route('terms-conditions') }}">Terms and conditions</a></li>
                     <li><a href="{{ route('privacy-policy') }}">Privacy</a></li>
-                    <li><span>© Bistro</span></li>
+                    <li><span>© Bistro Developed By Dipak</span></li>
                 </ul>
             </div>
         </div>

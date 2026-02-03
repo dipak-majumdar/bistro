@@ -26,7 +26,7 @@ class HomePageController extends Controller
     {
         try {
             $menuItems = $this->menuItemService->index();
-            $categories = $this->menuCategoryService->index();
+            $categories = MenuCategoryService::allCategories();
             $mostOrderedItems = $this->menuItemService->mostOrderedItems(6);
             $categoryWithItems = MenuCategory::with(['items' => function($query) {
                 $query->with('images')->orderBy('id', 'desc')->limit(4);
