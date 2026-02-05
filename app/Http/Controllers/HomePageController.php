@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use App\Services\MenuItemService;
 use App\Services\MenuCategoryService;
 use App\Models\MenuCategory;
+use App\Models\MenuItem;
 
 use App\Models\HomeComponents;
 use App\Models\HomeComponentOrder;
@@ -28,10 +29,14 @@ class HomePageController extends Controller
             $menuItems = $this->menuItemService->index();
             $categories = MenuCategoryService::allCategories();
             $mostOrderedItems = $this->menuItemService->mostOrderedItems(6);
-            $categoryWithItems = MenuCategory::with(['items' => function($query) {
-                $query->with('images')->orderBy('id', 'desc')->limit(4);
-            }])->whereHas('items')->get();
+            // $categoryWithItems = MenuCategory::with(['items' => function($query) {
+            //     $query->with('images')->orderBy('id', 'desc')->limit(4);
+            // }])->whereHas('items')->get();
             
+            // $menuItemsQuery = MenuItemService::itemsByCategory($categoryDetails->id);
+            $categoryWithItems = MenuItem::limit(14)->orderBy('updated_at', 'desc')->get();
+            // dd($categoryWithItems);
+
             $components = HomeComponentOrder::with('homeLayout')->Ordered()->get();
             
             return view('web.home', [

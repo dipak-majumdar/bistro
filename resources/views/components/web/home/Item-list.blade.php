@@ -8,14 +8,14 @@
             </div>
             <div class="list_menu">
 
-                @foreach ($categorywithitems as $category)
-                <section id="section-{{ $category->id }}">
+                {{-- @foreach ($categorywithitems as $category)
+                <section id="section-{{ $category->id }}"> --}}
                     {{-- <div class="d-flex justify-content-between">
                         <h4>{{ $category->name }}</h4>
                         <a href="{{ route('category-details', $category->slug) }}" class="">View All <i class="bi bi-arrow-right"></i></a>
                     </div> --}}
                     <div class="row">
-                        @foreach ($category->items as $item)
+                        @foreach ($categorywithitems as $item)
                         <div class="col-md-6">
                             <a class="menu_item modal_dialog" onclick="showItemDetails({{ $item->id }})" href="#modal-dialog">
                                 <figure><img src="{{ asset('assets/web/img/menu-thumb-placeholder.jpg') }}"
@@ -29,8 +29,8 @@
                         @endforeach
                     </div>
                     <!-- /row -->
-                </section>
-                @endforeach
+                {{-- </section>
+                @endforeach --}}
                 <!-- /section -->
                 {{-- <section id="section-2">
                     <h4>Main Courses</h4>
