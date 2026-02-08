@@ -34,4 +34,10 @@ class MenuItem extends Model
     {
         return $this->hasMany(ItemVariation::class, 'menu_item_id');
     }
+
+    public function minprice()
+    {
+        return $this->hasOne(ItemVariation::class, 'menu_item_id')
+            ->orderBy('price', 'asc');
+    }
 }

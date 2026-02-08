@@ -3763,12 +3763,12 @@ header.black_nav li .user a:hover {
 }
 .strip ul li {
   display: inline-block;
-  padding-top: 12px;
   font-size: 13px;
   font-size: 0.8125rem;
 }
 .strip ul li:last-child {
   padding: 0;
+  padding-top: 12px;
   float: right;
 }
 

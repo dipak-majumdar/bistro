@@ -66,10 +66,12 @@ class MenuItemService
     {
         // return MenuItem::with('images', 'category')->where('menu_items.category_id', $CategoryId)
         // ->get();
-        return MenuItem::with('images')
-        ->join('menu_categories', 'menu_items.category_id', '=', 'menu_categories.id')
-        ->select('menu_items.*', 'menu_categories.name as category_name')
-        ->orderBy('menu_items.id', 'desc')->where('menu_items.category_id', $CategoryId);
+        return MenuItem::with(['images', 'minprice', 'category' => function($query) {
+            $query->select('id', 'name', 'slug');
+        }])
+        ->select('id', 'name', 'includes', 'description', 'category_id', 'mrp', 'discount', 'gst', 'price', 'is_available', 'image', 'created_at', 'updated_at', 'deleted_at')
+        ->where('category_id', $CategoryId)
+        ->orderBy('id', 'desc');
     }
     public function mostOrderedItems(int $limit)
     {

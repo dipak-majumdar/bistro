@@ -204,14 +204,14 @@
 				<div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
 					<div class="strip">
 						<figure>
-							<span class="ribbon off">15% off</span>
+							{{ $menuItem->discount > 1 ? '<span class="ribbon off">'.(int) $menuItem->discount .'% off</span>': '' }}
 							<img src="{{ asset('assets/web/img/lazy-placeholder.png') }}" data-src="
 							@if ($menuItem->images->count() > 0)
 								{{ asset('storage/' . $menuItem->images->first()->image_path) }}
 							@else
 								{{ asset('assets/web/img/lazy-placeholder.png') }}
 							@endif" class="img-fluid lazy" alt="">
-							<a href="detail-restaurant.html" class="strip_info">
+							<a href="{{ route('category-details', $menuItem->category->slug) }}" class="strip_info">
 								<small>{{ $menuItem->category->name }}</small>
 								<div class="item_title">
 									<h3>{{ $menuItem->name }}</h3>
@@ -220,9 +220,16 @@
 							</a>
 						</figure>
 						<ul>
-							<li><span class="take yes">Takeaway</span> <span class="deliv yes">Delivery</span></li>
+							{{-- <li><span class="take yes">Takeaway</span> <span class="deliv yes">Delivery</span></li> --}}
 							<li>
 								<div class="score"><strong>8.9</strong></div>
+							</li>
+							<li>
+								<div>
+									<span>Starts From</span>
+									<i class="bi bi-currency-rupee"></i>
+									<strong>{{ $menuItem->minprice->price ?? 00 }}</strong>
+								</div>
 							</li>
 						</ul>
 					</div>
